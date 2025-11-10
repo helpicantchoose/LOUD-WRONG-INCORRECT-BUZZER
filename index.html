@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>2 Buttons Sound</title>
 <style>
   body {
@@ -11,15 +12,32 @@
     height: 100vh;
     gap: 20px;
     background: #f0f0f0;
+    margin: 0;
+    flex-direction: row; /* default horizontal layout */
   }
+
   button {
     border: none;
     background: none;
     cursor: pointer;
+    padding: 0;
   }
+
   img {
     width: 100px;
     height: 100px;
+  }
+
+  /* When the screen is narrow (e.g. phones), stack vertically */
+  @media (max-width: 600px) {
+    body {
+      flex-direction: column;
+      gap: 40px;
+    }
+    img {
+      width: 120px;
+      height: 120px;
+    }
   }
 </style>
 </head>
@@ -27,22 +45,23 @@
   <button id="greenBtn"><img src="green.jpg" alt="Green Button"></button>
   <button id="redBtn"><img src="red.jpg" alt="Red Button"></button>
 
-  <audio id="greenSound" src="correct.mp3"></audio>
-  <audio id="redSound" src="wrong.mp3"></audio>
+  <audio id="greenSound" src="correct.mp3" preload="auto"></audio>
+  <audio id="redSound" src="wrong.mp3" preload="auto"></audio>
 
-<script>
-  const green = document.getElementById('greenSound');
-  const red = document.getElementById('redSound');
+  <script>
+    const green = document.getElementById('greenSound');
+    const red = document.getElementById('redSound');
 
-  document.getElementById('greenBtn').onclick = () => {
-    const clone = green.cloneNode(); // make a copy
-    clone.play();
-  };
+    document.getElementById('greenBtn').onclick = () => {
+      const clone = green.cloneNode();
+      clone.play();
+    };
 
-  document.getElementById('redBtn').onclick = () => {
-    const clone = red.cloneNode();
-    clone.play();
-  };
-</script>
+    document.getElementById('redBtn').onclick = () => {
+      const clone = red.cloneNode();
+      clone.play();
+    };
+  </script>
 </body>
 </html>
+
